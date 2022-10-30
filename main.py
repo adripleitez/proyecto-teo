@@ -4,6 +4,7 @@ import ply.lex as lex
 tokens = [
     "LETTER",
     "NUMBER",
+    "STRING",
     "PLUS",
     "MINUS",
     "TIMES",
@@ -77,39 +78,37 @@ t_QUOTE = r"\""
 t_HASHTAG = r"\#"
 t_ASSIGNMENT = r"\="
 
-# A regular expression rule with some action code
+# A regular expression rule
 def t_COMMENT(t):
     r"\/\/.*"
     pass
-
 
 def t_COMMENTBLOCK(t):
     r"\/\*(.|\n)*\*\/"
     pass
 
+def t_STRING(t):
+    r'\".*\"'
+    return t
 def t_ID(t):
-    r"[a-zA-Z_][a-zA-Z_0-9]*"
+    r'([a-z]|[A-Z]|_)([a-z]|[A-Z]|\d|_)*'
     t.type = reserved_words.get(t.value, "ID")  # Check for reserved words
     return t
-
 
 def t_NUMBER(t):
     r"\d+(\.\d+)?"
     t.value = int(t.value)
     return t
 
-
 def t_LETTER(t):
     r"\'.\'"
     t.value = t.value.replace("'", "")
     return t
 
-
 # Define a rule so we can track line numbers
 def t_newline(t):
-    r"\n+"
+    r'\n+'
     t.lexer.lineno += len(t.value)
-
 
 # A string containing ignored characters (spaces and tabs)
 t_ignore = " \t"
@@ -123,7 +122,7 @@ def t_error(t):
 # Build the lexer
 lexer = lex.lex()
 
-def miLexer():
+def main():
     f = open('fuente.cpp','r')
     #lexer.input('3+4*_a23+-20*2')
     lexer.input(f.read())
@@ -133,3 +132,6 @@ def miLexer():
             break
         print(tok)
         print(tok.type, tok.value, tok.lineno, tok.lexpos)
+
+if __name__ == "__main__":
+    main()
