@@ -118,11 +118,18 @@ t_ignore = " \t"
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
-
+    return t
 
 # Build the lexer
 lexer = lex.lex()
 
-
-#def tokenize(data):
-  #  lexer.input(data)
+def miLexer():
+    f = open('fuente.cpp','r')
+    #lexer.input('3+4*_a23+-20*2')
+    lexer.input(f.read())
+    while True:
+        tok=lexer.token()
+        if not tok:
+            break
+        print(tok)
+        print(tok.type, tok.value, tok.lineno, tok.lexpos)
