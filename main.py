@@ -1,5 +1,40 @@
 import ply.lex as lex
 
+S = 0
+D = 1
+S1 = 2
+I = 3
+V = 4
+W = 5
+Q = 6
+Q1 = 7
+C = 8
+P = 9
+G = 10
+E = 11
+F = 12
+L = 13
+O = 14
+V1 = 15
+V2 = 16
+V3 = 17
+V4 = 18
+V5 = 19
+H = 20
+N = 21
+N1 = 22
+R = 23
+R1 = 24
+B = 25
+K = 26
+A = 27
+T1 = 28
+Z = 29
+T2 = 30
+T3 = 31
+T4 = 32
+T5 = 33
+
 # List of token names. Required
 tokens = [
     "LPAREN",
@@ -9,8 +44,8 @@ tokens = [
     "CONST_INT",
     "CONST_FLOAT",
     "EMPTY",  # empty char
-    "INCREMENT",    # ++
-    "DECREMENT",    # --
+    "INCREMENT",  # ++
+    "DECREMENT",  # --
     "PLUS",
     "MINUS",
     "TIMES",
@@ -24,12 +59,12 @@ tokens = [
     "GREATER",
     "ID",
     "COMMA",
-    "APOSTROPHE",   # '
-    "finInstruccion",   # ;
+    "APOSTROPHE",  # '
+    "finInstruccion",  # ;
     "COMMENT",
     "COMMENTBLOCK",
-    "ASSIGNMENT",   # =
-    "eof"   # $
+    "ASSIGNMENT",  # =
+    "eof"  # $
 ]
 
 reserved_words = {
@@ -72,6 +107,7 @@ T_ASSIGNMENT = r'\='
 t_APOSTROPHE = r"\'"
 t_COMMA = r'\,'
 t_eof = r'\$'
+
 
 # A regular expression rule
 def t_COMMENT(t):
