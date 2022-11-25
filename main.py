@@ -203,8 +203,7 @@ tabla2 = [
     [D, 'for', None],
     [D, 'eof', None],
 
-
-    [S, 'int', ['int', 'main', 'LPAREN', 'RPAREN', 'inicioBloque', S1, 'return', 'CONST_INT','finBloque']],
+    [S, 'int', ['int', 'main', 'LPAREN', 'RPAREN', 'inicioBloque', S1, 'return', 'CONST_INT', 'finBloque']],
     [S, 'main', None],
     [S, 'LPAREN', None],
     [S, 'RPAREN', None],
@@ -299,7 +298,7 @@ tabla2 = [
     [I, 'struct', None],
     [I, 'float', None],
     [I, 'MOD', None],
-    [I, 'if', ['if', 'LPAREN', C, 'RPAREN', 'inicioBloque', S1, '"finBloque",', E]],
+    [I, 'if', ['if', 'LPAREN', C, 'RPAREN', 'inicioBloque', S1, 'finBloque', E]],
     [I, 'else', None],
     [I, 'do', None],
     [I, 'while', None],
@@ -441,7 +440,9 @@ tabla2 = [
     [Q, 'OR', None],
     [Q, 'DOT', None],
     [Q, 'APOSTROPHE', None],
-    [Q, 'for', ['for', 'LPAREN', 'ID', 'ASSIGNMENT', 'CONST_INT', 'finInstruccion', 'ID', O, F, 'finInstruccion', 'ID', P, 'RPAREN', 'inicioBloque', S1, 'finBloque']],
+    [Q, 'for',
+     ['for', 'LPAREN', 'ID', 'ASSIGNMENT', 'CONST_INT', 'finInstruccion', 'ID', O, F, 'finInstruccion', 'ID', P,
+      'RPAREN', 'inicioBloque', S1, 'finBloque']],
     [Q, 'eof', None],
 ]
 
