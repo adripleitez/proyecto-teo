@@ -29,7 +29,6 @@ tokens = [
     "COMMENT",
     "COMMENTBLOCK",
     "ASSIGNMENT",   # =
-    "vacia"
     "eof"   # $
 ]
 
