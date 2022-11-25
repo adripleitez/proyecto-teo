@@ -64,6 +64,7 @@ tokens = [
     "COMMENT",
     "COMMENTBLOCK",
     "ASSIGNMENT",  # =
+    "DOT",  # .
     "eof"  # $
 ]
 
@@ -106,6 +107,7 @@ t_finInstruccion = r'\;'
 T_ASSIGNMENT = r'\='
 t_APOSTROPHE = r"\'"
 t_COMMA = r'\,'
+t_DOT = r'\.'
 t_eof = r'\$'
 
 
