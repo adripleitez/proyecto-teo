@@ -441,7 +441,7 @@ tabla2 = [
     [Q, 'OR', None],
     [Q, 'DOT', None],
     [Q, 'APOSTROPHE', None],
-    [Q, 'for', ['for', 'LPAREN', 'ID', 'ASSIGNMENT', 'CONST_INT', 'finInstruccion', 'ID', O, F, 'finInstruccion', 'ID', P, 'RPAREN', 'inicioBloque', S1,'finBloque']],
+    [Q, 'for', ['for', 'LPAREN', 'ID', 'ASSIGNMENT', 'CONST_INT', 'finInstruccion', 'ID', O, F, 'finInstruccion', 'ID', P, 'RPAREN', 'inicioBloque', S1, 'finBloque']],
     [Q, 'eof', None],
 ]
 
