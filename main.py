@@ -53,7 +53,7 @@ tokens = [
     "MOD",
     "AND",
     "OR",
-    "NOT",
+    "DIFFERENT",
     "EQUALS",
     "LESS",
     "GREATER",
@@ -94,7 +94,7 @@ t_DIVIDE = r'/'
 t_MOD = r"\%"
 t_AND = r"\&\&"
 t_OR = r"\|\|"
-t_NOT = r"\!"
+t_DIFFERENT = r"\!\="
 t_EQUALS = r"\=\="
 t_LESS = r"\<"
 t_GREATER = r"\>"
@@ -159,6 +159,11 @@ def t_error(t):
     t.lexer.skip(1)
     return t
 
+
+tabla2 = [
+    [S, 'identificador', [T, S2]],
+
+]
 
 # Build the lexer
 lexer = lex.lex()
