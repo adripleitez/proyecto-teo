@@ -162,7 +162,7 @@ def t_error(t):
     return t
 
 
-tabla2 = [
+tabla = [
     [D, 'int', ['int']],
     [D, 'main', None],
     [D, 'LPAREN', None],
@@ -1233,22 +1233,357 @@ tabla2 = [
     [K, 'DOT', None],
     [K, 'APOSTROPHE', None],
     [K, 'for', None],
-    [K, 'eof', None]
+    [K, 'eof', None],
+
+    # Anaya
+    [A, 'int', None],
+    [A, 'main', None],
+    [A, 'LPAREN', None],
+    [A, 'RPAREN', ['vacia']],
+    [A, 'void', None],
+    [A, 'inicioBloque', None],
+    [A, 'return', None],
+    [A, 'finBloque', None],
+    [A, 'CONST_INT', None],
+    [A, 'CONST_FLOAT', None],
+    [A, 'EMPTY', None],
+    [A, 'char', None],
+    [A, 'struct', None],
+    [A, 'float', None],
+    [A, 'MOD', None],
+    [A, 'if', None],
+    [A, 'else', None],
+    [A, 'do', None],
+    [A, 'while', None],
+    [A, 'ID', None],
+    [A, 'COMMA', None],
+    [A, 'finInstruccion', ['vacia']],
+    [A, 'DECREMENT', None],
+    [A, 'INCREMENT', None],
+    [A, 'PLUS', None],
+    [A, 'MINUS', None],
+    [A, 'TIMES', None],
+    [A, 'DIVIDE', None],
+    [A, 'LESS', None],
+    [A, 'GREATER', None],
+    [A, 'ASSIGNMENT', None],
+    [A, 'EQUALS', None],
+    [A, 'DIFFERENT', None],
+    [A, 'AND', None],
+    [A, 'OR', None],
+    [A, 'DOT', None],
+    [A, 'APOSTROPHE', None],
+    [A, 'for', None],
+    [A, 'eof', None],
+
+    [T1, 'int', None],
+    [T1, 'main', None],
+    [T1, 'LPAREN', ['LPAREN', K, 'RPAREN']],
+    [T1, 'RPAREN', None],
+    [T1, 'void', None],
+    [T1, 'inicioBloque', None],
+    [T1, 'return', None],
+    [T1, 'finBloque', None],
+    [T1, 'CONST_INT', ['CONST_INT']],
+    [T1, 'CONST_FLOAT', ['CONST_FLOAT']],
+    [T1, 'EMPTY', None],
+    [T1, 'char', None],
+    [T1, 'struct', None],
+    [T1, 'float', None],
+    [T1, 'MOD', None],
+    [T1, 'if', None],
+    [T1, 'else', None],
+    [T1, 'do', None],
+    [T1, 'while', None],
+    [T1, 'ID', ['ID']],
+    [T1, 'COMMA', None],
+    [T1, 'finInstruccion', None],
+    [T1, 'DECREMENT', None],
+    [T1, 'INCREMENT', None],
+    [T1, 'PLUS', None],
+    [T1, 'MINUS', None],
+    [T1, 'TIMES', None],
+    [T1, 'DIVIDE', None],
+    [T1, 'LESS', None],
+    [T1, 'GREATER', None],
+    [T1, 'ASSIGNMENT', None],
+    [T1, 'EQUALS', None],
+    [T1, 'DIFFERENT', None],
+    [T1, 'AND', None],
+    [T1, 'OR', None],
+    [T1, 'DOT', None],
+    [T1, 'APOSTROPHE', None],
+    [T1, 'for', None],
+    [T1, 'eof', None],
+
+    [Z, 'int', None],
+    [Z, 'main', None],
+    [Z, 'LPAREN', None],
+    [Z, 'RPAREN', ['vacia']],
+    [Z, 'void', None],
+    [Z, 'inicioBloque', None],
+    [Z, 'return', None],
+    [Z, 'finBloque', None],
+    [Z, 'CONST_INT', None],
+    [Z, 'CONST_FLOAT', None],
+    [Z, 'EMPTY', None],
+    [Z, 'char', None],
+    [Z, 'struct', None],
+    [Z, 'float', None],
+    [Z, 'MOD', ['MOD', T1, Z]],
+    [Z, 'if', None],
+    [Z, 'else', None],
+    [Z, 'do', None],
+    [Z, 'while', None],
+    [Z, 'ID', None],
+    [Z, 'COMMA', None],
+    [Z, 'finInstruccion', ['vacia']],
+    [Z, 'DECREMENT', None],
+    [Z, 'INCREMENT', None],
+    [Z, 'PLUS', ['vacia']],
+    [Z, 'MINUS', ['vacia']],
+    [Z, 'TIMES', ['TIMES', T1, Z]],
+    [Z, 'DIVIDE', ['TIMES', T1, Z]],
+    [Z, 'LESS', None],
+    [Z, 'GREATER', None],
+    [Z, 'ASSIGNMENT', None],
+    [Z, 'EQUALS', None],
+    [Z, 'DIFFERENT', None],
+    [Z, 'AND', None],
+    [Z, 'OR', None],
+    [Z, 'DOT', None],
+    [Z, 'APOSTROPHE', None],
+    [Z, 'for', None],
+    [Z, 'eof', None],
+
+    [T2, 'int', None],
+    [T2, 'main', None],
+    [T2, 'LPAREN', None],
+    [T2, 'RPAREN', ['vacia']],
+    [T2, 'void', None],
+    [T2, 'inicioBloque', None],
+    [T2, 'return', None],
+    [T2, 'finBloque', None],
+    [T2, 'CONST_INT', ['CONST_INT', T3]],
+    [T2, 'CONST_FLOAT', ['CONST_FLOAT', T3]],
+    [T2, 'EMPTY', None],
+    [T2, 'char', None],
+    [T2, 'struct', None],
+    [T2, 'float', None],
+    [T2, 'MOD', None],
+    [T2, 'if', None],
+    [T2, 'else', None],
+    [T2, 'do', None],
+    [T2, 'while', None],
+    [T2, 'ID', ['ID', T3]],
+    [T2, 'COMMA', None],
+    [T2, 'finInstruccion', None],
+    [T2, 'DECREMENT', None],
+    [T2, 'INCREMENT', None],
+    [T2, 'PLUS', None],
+    [T2, 'MINUS', None],
+    [T2, 'TIMES', None],
+    [T2, 'DIVIDE', None],
+    [T2, 'LESS', None],
+    [T2, 'GREATER', None],
+    [T2, 'ASSIGNMENT', None],
+    [T2, 'EQUALS', None],
+    [T2, 'DIFFERENT', None],
+    [T2, 'AND', None],
+    [T2, 'OR', None],
+    [T2, 'DOT', None],
+    [T2, 'APOSTROPHE', None],
+    [T2, 'for', None],
+    [T2, 'eof', None],
+
+    [T3, 'int', None],
+    [T3, 'main', None],
+    [T3, 'LPAREN', None],
+    [T3, 'RPAREN', ['vacia']],
+    [T3, 'void', None],
+    [T3, 'inicioBloque', None],
+    [T3, 'return', None],
+    [T3, 'finBloque', None],
+    [T3, 'CONST_INT', None],
+    [T3, 'CONST_FLOAT', None],
+    [T3, 'EMPTY', None],
+    [T3, 'char', None],
+    [T3, 'struct', None],
+    [T3, 'float', None],
+    [T3, 'MOD', None],
+    [T3, 'if', None],
+    [T3, 'else', None],
+    [T3, 'do', None],
+    [T3, 'while', None],
+    [T3, 'ID', None],
+    [T3, 'COMMA', ['COMMA', 'ID', T3]],
+    [T3, 'finInstruccion', None],
+    [T3, 'DECREMENT', None],
+    [T3, 'INCREMENT', None],
+    [T3, 'PLUS', None],
+    [T3, 'MINUS', None],
+    [T3, 'TIMES', None],
+    [T3, 'DIVIDE', None],
+    [T3, 'LESS', None],
+    [T3, 'GREATER', None],
+    [T3, 'ASSIGNMENT', None],
+    [T3, 'EQUALS', None],
+    [T3, 'DIFFERENT', None],
+    [T3, 'AND', None],
+    [T3, 'OR', None],
+    [T3, 'DOT', None],
+    [T3, 'APOSTROPHE', None],
+    [T3, 'for', None],
+    [T3, 'eof', None],
+
+    [T4, 'int', [D, 'ID', T5]],
+    [T4, 'main', None],
+    [T4, 'LPAREN', None],
+    [T4, 'RPAREN', None],
+    [T4, 'void', None],
+    [T4, 'inicioBloque', None],
+    [T4, 'return', None],
+    [T4, 'finBloque', None],
+    [T4, 'CONST_INT', None],
+    [T4, 'CONST_FLOAT', None],
+    [T4, 'EMPTY', None],
+    [T4, 'char', [D, 'ID', T5]],
+    [T4, 'struct', None],
+    [T4, 'float', [D, 'ID', T5]],
+    [T4, 'MOD', None],
+    [T4, 'if', None],
+    [T4, 'else', None],
+    [T4, 'do', None],
+    [T4, 'while', None],
+    [T4, 'ID', None],
+    [T4, 'COMMA', None],
+    [T4, 'finInstruccion', None],
+    [T4, 'DECREMENT', None],
+    [T4, 'INCREMENT', None],
+    [T4, 'PLUS', None],
+    [T4, 'MINUS', None],
+    [T4, 'TIMES', None],
+    [T4, 'DIVIDE', None],
+    [T4, 'LESS', None],
+    [T4, 'GREATER', None],
+    [T4, 'ASSIGNMENT', None],
+    [T4, 'EQUALS', None],
+    [T4, 'DIFFERENT', None],
+    [T4, 'AND', None],
+    [T4, 'OR', None],
+    [T4, 'DOT', None],
+    [T4, 'APOSTROPHE', None],
+    [T4, 'for', None],
+    [T4, 'eof', None],
+
+    [T5, 'int', None],
+    [T5, 'main', None],
+    [T5, 'LPAREN', None],
+    [T5, 'RPAREN', ['vacia']],
+    [T5, 'void', None],
+    [T5, 'inicioBloque', None],
+    [T5, 'return', None],
+    [T5, 'finBloque', None],
+    [T5, 'CONST_INT', None],
+    [T5, 'CONST_FLOAT', None],
+    [T5, 'EMPTY', None],
+    [T5, 'char', None],
+    [T5, 'struct', None],
+    [T5, 'float', None],
+    [T5, 'MOD', None],
+    [T5, 'if', None],
+    [T5, 'else', None],
+    [T5, 'do', None],
+    [T5, 'while', None],
+    [T5, 'ID', None],
+    [T5, 'COMMA', ['COMMA', T4]],
+    [T5, 'finInstruccion', None],
+    [T5, 'DECREMENT', None],
+    [T5, 'INCREMENT', None],
+    [T5, 'PLUS', None],
+    [T5, 'MINUS', None],
+    [T5, 'TIMES', None],
+    [T5, 'DIVIDE', None],
+    [T5, 'LESS', None],
+    [T5, 'GREATER', None],
+    [T5, 'ASSIGNMENT', None],
+    [T5, 'EQUALS', None],
+    [T5, 'DIFFERENT', None],
+    [T5, 'AND', None],
+    [T5, 'OR', None],
+    [T5, 'DOT', None],
+    [T5, 'APOSTROPHE', None],
+    [T5, 'for', None],
+    [T5, 'eof', None]
 ]
+
+stack = ['eof', 0]
 
 # Build the lexer
 lexer = lex.lex()
 
 
-def main():
-    f = open('fuente.cpp', 'r')
-    lexer.input(f.read())
+def miParser():
+    # f = open('fuente.c','r')
+    # lexer.input(f.read())
+
+    fuente = 'int a, b,identi, c;$'
+    lexer.input(fuente)
+
+    tok = lexer.token()
+    x = stack[-1]  # primer elemento de der a izq
     while True:
-        tok = lexer.token()
-        if not tok:
-            break
-        print(tok)
-        print(tok.type, tok.value, tok.lineno, tok.lexpos)
+        if x == tok.type and x == 'eof':
+            print("Cadena terminada exitosamente")
+            return  # aceptar
+        else:
+            if x == tok.type and x != 'eof':
+                print("entró aqui")
+                stack.pop()
+                x = stack[-1]
+                tok = lexer.token()
+                print(tok)
+            if x in tokens and x != tok.type:
+                print("Error: se esperaba ", x)
+                print('en la posicion: ', tok.lexpos);
+
+                # poner el token que se esperaba en la cadena
+                # estrategia modificar cadana y reiniciar parser (no recomendado)
+                print(stack)
+                tok.type = x
+
+            if x not in tokens:  # es no terminal
+                celda = buscar_en_tabla(x, tok.type)
+                if celda is None:
+                    print("Error: NO se esperaba", tok.type)
+                    print("En posición:", tok.lexpos)
+                    return 0;
+                else:
+                    stack.pop()
+                    agregar_pila(celda)
+                    print(stack)
+                    print("------------")
+                    x = stack[-1]
+
+                    # if not tok:
+            # break
+        # print(tok)
+        # print(tok.type, tok.value, tok.lineno, tok.lexpos)
+
+
+def buscar_en_tabla(no_terminal, terminal):
+    for i in range(len(tabla)):
+        if (tabla[i][0] == no_terminal and tabla[i][1] == terminal):
+            return tabla[i][2]  # retorno la celda
+
+
+def agregar_pila(produccion):
+    for elemento in reversed(produccion):
+        if elemento != 'vacia':  # la vacía no la inserta
+            stack.append(elemento)
+
+def main():
+   miParser()
 
 
 if __name__ == "__main__":
