@@ -95,6 +95,8 @@ t_DIVIDE = r'/'
 t_MOD = r"\%"
 t_AND = r"\&\&"
 t_OR = r"\|\|"
+t_INCREMENT = r"\+\+"
+t_DECREMENT = r"\-\-"
 t_DIFFERENT = r"\!\="
 t_EQUALS = r"\=\="
 t_LESS = r"\<"
@@ -106,6 +108,7 @@ t_finBloque = r'\}'
 t_finInstruccion = r'\;'
 t_ASSIGNMENT = r"\="
 t_APOSTROPHE = r"\'"
+t_EMPTY = r"\'\'"
 t_COMMA = r'\,'
 t_DOT = r'\.'
 t_eof = r'\$'
@@ -1585,8 +1588,8 @@ def main():
         tok = lexer.token()
         if not tok:
             break
-        print(tok)
-        print(tok.type, tok.value, tok.lineno, tok.lexpos)
+        # print(tok)
+        print(tok.type, "elemento:    '" ,tok.value, "'      " ,tok.lineno, tok.lexpos)
 
 
 if __name__ == "__main__":
