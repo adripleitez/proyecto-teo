@@ -1,7 +1,5 @@
 int main(){
 	int a;
-	a=15;
-	print("Hola todos\n");
-	print(a);
+	a = 15;
 	return 0;
 }
