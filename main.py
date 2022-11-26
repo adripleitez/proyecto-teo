@@ -705,7 +705,7 @@ tabla2 = [
     [L, 'else', None],
     [L, 'do', None],
     [L, 'while', None],
-    [L, 'ID', 'ID'],
+    [L, 'ID', ['ID']],
     [L, 'COMMA', None],
     [L, 'finInstruccion', None],
     [L, 'DECREMENT', None],
