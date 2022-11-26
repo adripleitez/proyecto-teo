@@ -104,7 +104,7 @@ t_RPAREN = r"\)"
 t_inicioBloque = r'\{'
 t_finBloque = r'\}'
 t_finInstruccion = r'\;'
-T_ASSIGNMENT = r'\='
+t_ASSIGNMENT = r"\="
 t_APOSTROPHE = r"\'"
 t_COMMA = r'\,'
 t_DOT = r'\.'
