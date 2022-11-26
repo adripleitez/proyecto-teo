@@ -122,11 +122,6 @@ def t_COMMENTBLOCK(t):
     pass
 
 
-def t_STRING(t):
-    r'\".*\"'
-    return t
-
-
 def t_ID(t):
     r'([a-z]|[A-Z]|_)([a-z]|[A-Z]|\d|_)*'
     t.type = reserved_words.get(t.value, "ID")  # Check for reserved words
@@ -143,7 +138,6 @@ def t_LETTER(t):
     r"\'.\'"
     t.value = t.value.replace("'", "")
     return t
-
 
 # Define a rule so we can track line numbers
 def t_newline(t):
@@ -1524,15 +1518,15 @@ lexer = lex.lex()
 
 
 def miParser():
-    # f = open('fuente.c','r')
-    # lexer.input(f.read())
-
-    fuente = 'int a, b,identi, c;$'
-    lexer.input(fuente)
+    f = open('fuente.c', 'r')
+    lexer.input(f.read())
 
     tok = lexer.token()
     x = stack[-1]  # primer elemento de der a izq
+
     while True:
+        print(tok.type)
+        print(x)
         if x == tok.type and x == 'eof':
             print("Cadena terminada exitosamente")
             return  # aceptar
@@ -1545,7 +1539,7 @@ def miParser():
                 print(tok)
             if x in tokens and x != tok.type:
                 print("Error: se esperaba ", x)
-                print('en la posicion: ', tok.lexpos);
+                print('en la posicion: ', tok.lexpos)
 
                 # poner el token que se esperaba en la cadena
                 # estrategia modificar cadana y reiniciar parser (no recomendado)
@@ -1557,7 +1551,10 @@ def miParser():
                 if celda is None:
                     print("Error: NO se esperaba", tok.type)
                     print("En posición:", tok.lexpos)
-                    return 0;
+                    print(tok.type, x, tok.value, tok.lineno, tok.lexpos)
+                    print(stack)
+                    tok.type = x
+                    return 0
                 else:
                     stack.pop()
                     agregar_pila(celda)
@@ -1573,7 +1570,7 @@ def miParser():
 
 def buscar_en_tabla(no_terminal, terminal):
     for i in range(len(tabla)):
-        if (tabla[i][0] == no_terminal and tabla[i][1] == terminal):
+        if tabla[i][0] == no_terminal and tabla[i][1] == terminal:
             return tabla[i][2]  # retorno la celda
 
 
@@ -1582,8 +1579,16 @@ def agregar_pila(produccion):
         if elemento != 'vacia':  # la vacía no la inserta
             stack.append(elemento)
 
+
 def main():
-   miParser()
+    while True:
+        f = open('fuente.c', 'r')
+        lexer.input(f.read())
+        tok = lexer.token()
+        if not tok:
+            break
+        print(tok)
+        print(tok.type, tok.value, tok.lineno, tok.lexpos)
 
 
 if __name__ == "__main__":
