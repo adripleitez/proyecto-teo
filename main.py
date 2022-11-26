@@ -127,18 +127,15 @@ def t_ID(t):
     t.type = reserved_words.get(t.value, "ID")  # Check for reserved words
     return t
 
+def t_CONST_FLOAT(t):
+    r'[-+]?[0-9]+(\.([0-9]+)?([eE][-+]?[0-9]+)?|[eE][-+]?[0-9]+)'
+    t.value = float(t.value)
+    return t
 
 def t_CONST_INT(t):
     r"\d+(\.\d+)?"
     t.value = int(t.value)
     return t
-
-
-def t_LETTER(t):
-    r"\'.\'"
-    t.value = t.value.replace("'", "")
-    return t
-
 
 # Define a rule so we can track line numbers
 def t_newline(t):
