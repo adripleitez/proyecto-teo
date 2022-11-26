@@ -128,7 +128,7 @@ def t_ID(t):
     return t
 
 
-def t_NUMBER(t):
+def t_CONST_INT(t):
     r"\d+(\.\d+)?"
     t.value = int(t.value)
     return t
