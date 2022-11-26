@@ -1,22 +1,3 @@
-
-void prueba(){
-    int a = 0;
-}
-
-void prueba(int b){
-    int a = 0;
-    return a;
-}
-
-float prueba2(int a, float b){
-    float b = 0;
-}
-
-struct algo {   // Structure declaration
-  int myNum;           // Member (int variable)
-  char myLetter;       // Member (char variable)
-} a, b;
-
 int main(){
 	int a,b,c;
 	float d = 3.3;
@@ -32,7 +13,7 @@ int main(){
 	}
 
 	algo.myNum = 1;
-	algo.myLetter = 'a';
+	algo.myLetter = '';
 	prueba(1, 2);
 	return 0;
 }

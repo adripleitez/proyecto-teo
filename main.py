@@ -69,19 +69,19 @@ tokens = [
 ]
 
 reserved_words = {
-    "int": "INT",
-    "main": "MAIN",
-    "void": "VOID",
-    "return": "RETURN",
-    "float": "FLOAT",
-    "char": "CHAR",
-    "struct": "STRUCT",
-    "if": "IF",
-    "else": "ELSE",
-    "do": "DO",
-    "while": "WHILE",
-    'break': 'BREAK',  # Se debe poner gramatica
-    "for": "FOR"
+    "int": "int",
+    "main": "main",
+    "void": "void",
+    "return": "return",
+    "float": "float",
+    "char": "char",
+    "struct": "struct",
+    "if": "if",
+    "else": "else",
+    "do": "do",
+    "while": "while",
+    'break': 'break',  # se debe poner gramatica
+    "for": "for"
 }
 
 # Add words reserved to tokens array
@@ -1518,78 +1518,72 @@ stack = ['eof', 0]
 lexer = lex.lex()
 
 
-# def miParser():
-#     f = open('fuente.c', 'r')
-#     lexer.input(f.read())
-#
-#     tok = lexer.token()
-#     x = stack[-1]  # primer elemento de der a izq
-#
-#     while True:
-#         print(tok.type)
-#         print(x)
-#         if x == tok.type and x == 'eof':
-#             print("Cadena terminada exitosamente")
-#             return  # aceptar
-#         else:
-#             if x == tok.type and x != 'eof':
-#                 print("entró aqui")
-#                 stack.pop()
-#                 x = stack[-1]
-#                 tok = lexer.token()
-#                 print(tok)
-#             if x in tokens and x != tok.type:
-#                 print("Error: se esperaba ", x)
-#                 print('en la posicion: ', tok.lexpos)
-#
-#                 # poner el token que se esperaba en la cadena
-#                 # estrategia modificar cadana y reiniciar parser (no recomendado)
-#                 print(stack)
-#                 tok.type = x
-#
-#             if x not in tokens:  # es no terminal
-#                 celda = buscar_en_tabla(x, tok.type)
-#                 if celda is None:
-#                     print("Error: NO se esperaba", tok.type)
-#                     print("En posición:", tok.lexpos)
-#                     print(tok.type, x, tok.value, tok.lineno, tok.lexpos)
-#                     print(stack)
-#                     tok.type = x
-#                     return 0
-#                 else:
-#                     stack.pop()
-#                     agregar_pila(celda)
-#                     print(stack)
-#                     print("------------")
-#                     x = stack[-1]
-#
-#                     # if not tok:
-#             # break
-#         # print(tok)
-#         # print(tok.type, tok.value, tok.lineno, tok.lexpos)
-#
-#
-# def buscar_en_tabla(no_terminal, terminal):
-#     for i in range(len(tabla)):
-#         if tabla[i][0] == no_terminal and tabla[i][1] == terminal:
-#             return tabla[i][2]  # retorno la celda
-#
-#
-# def agregar_pila(produccion):
-#     for elemento in reversed(produccion):
-#         if elemento != 'vacia':  # la vacía no la inserta
-#             stack.append(elemento)
+def miParser():
+    f = open('fuente.c', 'r')
+    lexer.input(f.read())
+
+    tok = lexer.token()
+    x = stack[-1]  # primer elemento de der a izq
+
+    while True:
+        print(tok.type, "elemento:    '" ,tok.value, "'      " ,tok.lineno, tok.lexpos, "valor de x: ", x)
+
+        if x == tok.type and x == 'eof':
+            print("Cadena terminada exitosamente")
+            return  # aceptar
+        else:
+            if x == tok.type and x != 'eof':
+                print("entró aqui")
+                stack.pop()
+                x = stack[-1]
+                tok = lexer.token()
+                print(tok)
+            if x in tokens and x != tok.type:
+                print("Error: se esperaba ", x)
+                print('en la posicion: ', tok.lexpos)
+
+                # poner el token que se esperaba en la cadena
+                # estrategia modificar cadana y reiniciar parser (no recomendado)
+                print(stack)
+                tok.type = x
+
+            if x not in tokens:  # es no terminal
+                celda = buscar_en_tabla(x, tok.type)
+                if celda is None:
+                    print("Error: NO se esperaba", tok.type, " se esperaba: ", x)
+                    print("En posición:", tok.lexpos)
+                    print(tok.type, "elemento:    '", tok.value, "'      ", tok.lineno, tok.lexpos, "valor de x: ", x)
+                    return 0;
+                else:
+                    stack.pop()
+                    agregar_pila(celda)
+                    print(stack)
+                    print("------------")
+                    x = stack[-1]
+
+
+def buscar_en_tabla(no_terminal, terminal):
+    for i in range(len(tabla)):
+        if tabla[i][0] == no_terminal and tabla[i][1] == terminal:
+            return tabla[i][2]  # retorno la celda
+
+
+def agregar_pila(produccion):
+    for elemento in reversed(produccion):
+        if elemento != 'vacia':  # la vacía no la inserta
+            stack.append(elemento)
 
 
 def main():
-    f = open('fuente.c', 'r')
-    lexer.input(f.read())
-    while True:
-        tok = lexer.token()
-        if not tok:
-            break
-        # print(tok)
-        print(tok.type, "elemento:    '" ,tok.value, "'      " ,tok.lineno, tok.lexpos)
+    miParser()
+    # f = open('fuente.c', 'r')
+    # lexer.input(f.read())
+    # while True:
+    #     tok = lexer.token()
+    #     if not tok:
+    #         break
+    #     # print(tok)
+    #     print(tok.type, "elemento:    '" ,tok.value, "'      " ,tok.lineno, tok.lexpos)
 
 
 if __name__ == "__main__":
