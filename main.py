@@ -37,6 +37,7 @@ T5 = 33
 
 # List of token names. Required
 tokens = [
+    "int_main",
     "LPAREN",
     "RPAREN",
     "inicioBloque",
@@ -70,7 +71,6 @@ tokens = [
 
 reserved_words = {
     "int": "int",
-    "main": "main",
     "void": "void",
     "return": "return",
     "float": "float",
@@ -115,6 +115,12 @@ t_eof = r'\$'
 
 
 # A regular expression rule
+
+def t_int_main(t):
+    r"int\s*\t*main"
+    t.type = reserved_words.get(t.value, "int_main")  # Check for reserved words
+    return t
+
 def t_COMMENT(t):
     r"\/\/.*"
     pass
@@ -123,7 +129,6 @@ def t_COMMENT(t):
 def t_COMMENTBLOCK(t):
     r"\/\*(.|\n)*\*\/"
     pass
-
 
 def t_ID(t):
     r'([a-z]|[A-Z]|_)([a-z]|[A-Z]|\d|_)*'
@@ -1575,15 +1580,15 @@ def agregar_pila(produccion):
 
 
 def main():
-    miParser()
-    # f = open('fuente.c', 'r')
-    # lexer.input(f.read())
-    # while True:
-    #     tok = lexer.token()
-    #     if not tok:
-    #         break
-    #     # print(tok)
-    #     print(tok.type, "elemento:    '" ,tok.value, "'      " ,tok.lineno, tok.lexpos)
+    # miParser()
+    f = open('fuente.c', 'r')
+    lexer.input(f.read())
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break
+        # print(tok)
+        print(tok.type, "elemento:    '" ,tok.value, "'      " ,tok.lineno, tok.lexpos)
 
 
 if __name__ == "__main__":
