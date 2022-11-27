@@ -38,6 +38,7 @@ T5 = 33
 # List of token names. Required
 tokens = [
     "int_main",
+    "declaration",
     "LPAREN",
     "RPAREN",
     "inicioBloque",
@@ -119,6 +120,11 @@ t_eof = r'\$'
 def t_int_main(t):
     r"int\s*\t*main"
     t.type = reserved_words.get(t.value, "int_main")  # Check for reserved words
+    return t
+
+def t_declaration(t):
+    r'([a-zA-Z_{1}][a-zA-Z0-9_]+)(?=\()'
+    t.type = reserved_words.get(t.value, "declaration")  # Check for reserved words
     return t
 
 def t_COMMENT(t):

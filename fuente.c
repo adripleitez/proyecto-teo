@@ -1,4 +1,12 @@
+float f1(){
+}
+char Funcion2 (){
+   int algo = 1;
+   return algo;
+}
+
 int main(){
+    Funcion2();
 	int a,b,c;
 	float d = 3.3;
 	a = 15;
