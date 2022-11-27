@@ -1,39 +1,47 @@
 import ply.lex as lex
 
 S = 0
-D = 1
-S1 = 2
-I = 3
-V = 4
-W = 5
-Q = 6
-Q1 = 7
-C = 8
-P = 9
+O = 1
+F = 2
+F2 = 3
+F3 = 4
+L = 5
+C = 6
+I = 7
+E = 8
+W = 9
 G = 10
-E = 11
-F = 12
-L = 13
-O = 14
-V1 = 15
-V2 = 16
-V3 = 17
-V4 = 18
-V5 = 19
-H = 20
-N = 21
-N1 = 22
-R = 23
-R1 = 24
-B = 25
-K = 26
-A = 27
-T1 = 28
-Z = 29
-T2 = 30
-T3 = 31
-T4 = 32
-T5 = 33
+P = 11
+Q = 12
+Q3 = 13
+Q4 = 14
+D = 15
+D2 = 16
+R = 17
+R1 = 18
+V = 19
+V1 = 20
+V2 = 21
+V4 = 22
+B = 23
+K = 24
+Q1 = 25
+A = 26
+T1 = 27
+Z = 28
+H = 29
+N = 30
+N1 = 31
+S2 = 32
+S1 = 33
+M = 34
+M1 = 35
+M2 = 36
+M4 = 37
+T2 = 38
+T3 = 39
+T4 = 40
+T5 = 41
 
 # List of token names. Required
 tokens = [
@@ -123,7 +131,7 @@ def t_int_main(t):
     return t
 
 def t_declaration(t):
-    r'([a-zA-Z_{1}][a-zA-Z0-9_]+)(?=\()'
+    r'([a-zA-Z_{1}][a-zA-Z0-9_]+)\s*\t*(?=\()'
     t.type = reserved_words.get(t.value, "declaration")  # Check for reserved words
     return t
 
