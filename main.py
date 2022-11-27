@@ -47,13 +47,14 @@ T5 = 41
 tokens = [
     "int_main",
     "declaration",
+    "member",
     "LPAREN",
     "RPAREN",
     "inicioBloque",
     "finBloque",
     "CONST_INT",
     "CONST_FLOAT",
-    "EMPTY",  # empty char
+    "CONST_CHAR",
     "INCREMENT",  # ++
     "DECREMENT",  # --
     "PLUS",
@@ -69,7 +70,6 @@ tokens = [
     "GREATER",
     "ID",
     "COMMA",
-    "APOSTROPHE",  # '
     "finInstruccion",  # ;
     "COMMENT",
     "COMMENTBLOCK",
@@ -116,12 +116,9 @@ t_inicioBloque = r'\{'
 t_finBloque = r'\}'
 t_finInstruccion = r'\;'
 t_ASSIGNMENT = r"\="
-t_APOSTROPHE = r"\'"
-t_EMPTY = r"\'\'"
 t_COMMA = r'\,'
 t_DOT = r'\.'
 t_eof = r'\$'
-
 
 # A regular expression rule
 
@@ -135,10 +132,18 @@ def t_declaration(t):
     t.type = reserved_words.get(t.value, "declaration")  # Check for reserved words
     return t
 
+def t_CONST_CHAR(t):
+    r"(\')(.*)(\')"
+    return t
+
+# def t_member(t):
+#     r'(?=\{).*(?=\})'
+#     t.type = reserved_words.get(t.value, "member")  # Check for reserved words
+#     return t
+
 def t_COMMENT(t):
     r"\/\/.*"
     pass
-
 
 def t_COMMENTBLOCK(t):
     r"\/\*(.|\n)*\*\/"

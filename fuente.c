@@ -1,9 +1,7 @@
-float f1(){
-}
-char Funcion2 (){
-   int algo = 1;
-   return algo;
-}
+struct myStructure {
+  int myNum;
+  char myLetter;
+};
 
 int main(){
     Funcion2();
@@ -12,6 +10,7 @@ int main(){
 	a = 15;
 	b = 20;
 	c = a + b;
+	d= '_';
 	for (int i = 0; i < n; i--){
 	    while(n < 4){
 	        do{
