@@ -1631,7 +1631,7 @@ tabla = [
     [I, 'CONST_INT', None],
     [I, 'CONST_FLOAT', None],
     [I, 'CONST_CHAR', None],
-    [I, 'if', ['if', 'RPAREN', C, 'LPAREN', 'inicioBloque', S1, 'finBloque', E]],
+    [I, 'if', ['if', 'LPAREN', C, 'RPAREN', 'inicioBloque', S1, 'finBloque', E]],
     [I, 'else', None],
     [I, 'while', None],
     [I, 'do', None],
@@ -1957,7 +1957,6 @@ tabla = [
 ]
 
 stack = ['eof', 0]
-
 # Build the lexer
 lexer = lex.lex()
 
@@ -1968,9 +1967,6 @@ def miParser():
 
     tok = lexer.token()
     x = stack[-1]  # primer elemento de der a izq
-    print("TOKENS")
-    print(tokens)
-    print("===============================")
 
     while True:
         # print(tok.type, "elemento:    '" ,tok.value, "'      " ,tok.lineno, tok.lexpos, "valor de x: ", x)
@@ -1979,6 +1975,7 @@ def miParser():
         print("VALOR DE STACK")
         print(stack)
         print("--------------------------------------------------")
+
         if x == tok.type and x == 'eof':
             print("Cadena terminada exitosamente")
             return  # aceptar
@@ -1995,12 +1992,11 @@ def miParser():
                     return  # aceptar
 
             if x in tokens and x != tok.type:
-                print("Error: se esperaba ", x)
-                print('en la posicion: ', tok.lexpos)
+                print("\nERROR en línea:  ", tok.lineno, "  se esperaba token de tipo  ", x, "  en la posición  ", tok.lexpos, '\n')
 
-                # poner el token que se esperaba en la cadena
-                # estrategia modificar cadana y reiniciar parser (no recomendado)
+                stack.append(x)
                 print(stack)
+                #len(stack)
                 tok.type = x
 
             if x not in tokens:  # es no terminal
@@ -2014,9 +2010,7 @@ def miParser():
                 print(celda)
                 print("===============================")
                 if celda is None:
-                    print("Error: NO se esperaba", tok.type, " se esperaba: ", x)
-                    print("En posición:", tok.lexpos)
-                    print(tok.type, "elemento:    '", tok.value, "'      ", tok.lineno, tok.lexpos, "valor de x: ", x)
+                    print("\nERROR en línea:  ", tok.lineno, " NO SE ESPERABA token de tipo ", tok.type,"  se esperaba  ", x, "  en  '", tok.value, "'\n")
                     return 0;
                 else:
                     stack.pop()
