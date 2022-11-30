@@ -83,5 +83,7 @@ getSymbol = {
     "do": "do",
     "while": "while",
     "for": "for",
-    'break': 'break'
+    'break': 'break',
+    "vacia": ""
 }
+

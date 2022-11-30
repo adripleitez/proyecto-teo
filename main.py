@@ -2,6 +2,8 @@ import ply.lex as lex
 from symbols import symbols
 from symbols import getSymbol
 from table import tabla
+from table import first
+
 # List of token names. Required
 tokens = [
     "LPAREN",
@@ -133,6 +135,7 @@ def t_error(t):
     t.lexer.skip(1)
     return t
 
+
 stack = ['eof', 0]
 
 # Build the lexer
@@ -145,16 +148,20 @@ def miParser():
     lexer.input(f1)
 
     success = True
+    expected = True
     tok = lexer.token()
     x = stack[-1]  # primer elemento de der a izq
 
     while True:
         flag = True
-        print("VALOR DE X")
-        print(x)
-        print("VALOR DE STACK")
-        print(stack)
-        print("--------------------------------------------------")
+        if tok.type == x:
+            expected = True
+
+        # print("VALOR DE X")
+        # print(x)
+        # print("VALOR DE STACK")
+        # print(stack)
+        # print("--------------------------------------------------")
 
         if x == tok.type and x == 'eof':
             if success:
@@ -163,52 +170,46 @@ def miParser():
                 print("\u001b[31mCadena terminada con errores")
             return  # aceptar
         else:
-            if x == tok.type and x != 'eof':
-                print("entró aqui")
+            if x == tok.type and x != 'eof' and expected:
+                # print("entró aqui")
                 stack.pop()
                 x = stack[-1]
                 tok = lexer.token()
-                print(tok)
+                # print(tok)
 
-            if x in tokens and x != tok.type:
-                print("entró aqui 2")
-                print("\nERROR en línea: ", tok.lineno, " se esperaba ", symbols[x],
+            if x in tokens and x != tok.type and expected:
+                print("ERROR en línea: ", tok.lineno, " se esperaba ", symbols[x],
                       'en la posicion: ', tok.lexpos, "\n")
-                print('tok value: ', tok.value)
+                # print('tok value: ', tok.value)
 
                 # poner el token que se esperaba en la cadena
                 # estrategia modificar cadana y reiniciar parser (no recomendado)
-                print(stack)
-                print(f1)
+                # print(stack)
                 f1 = getSymbol[x] + f1[tok.lexpos:]
-                print("\n", f1)
+                # print("\n", f1)
                 lexer.input(f1)
                 tok = lexer.token()
                 flag = False
                 success = False
 
             if x not in tokens and flag:  # es no terminal
-                print("entró aqui 3")
                 celda = buscar_en_tabla(x, tok.type)
-                print("===============================")
-                print("X VALUE: ")
-                print(x)
-                print("TOK TYPE")
-                print(tok.type)
-                print("CELDA")
-                print(celda)
-                print("===============================")
                 if celda is None:
+
                     print("\nERROR en línea: ", tok.lineno, ", NO SE ESPERABA token de tipo ", tok.type,
-                          "  se esperaba  ", x, "  en  '", tok.value, "'\n")
-                    return 0
+                            "  se esperaba  ", x, "  en  '", tok.value, "'\n")
+
+                    f1 = f1[tok.lexpos + len(tok.value):]
+                    f1 = f1[f1.find('\n'):]
+                    lexer.input(f1)
+                    tok = lexer.token()
+                    success = False
+                    expected = False
                 else:
                     stack.pop()
                     agregar_pila(celda)
-                    print(stack)
-                    print("------------")
                     x = stack[-1]
-        print("--------------------------------------------------\n\n")
+        # print("--------------------------------------------------\n\n")
 
 
 def buscar_en_tabla(no_terminal, terminal):
@@ -237,3 +238,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # print(first)

@@ -21,7 +21,7 @@ int main(){
 	}
 
 	algo.myNum = 1;
-	algo.myLetter = ''
+	algo.myLetter = '';
 	prueba(1, 2);
 	return 0;
 }
