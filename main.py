@@ -148,7 +148,6 @@ def miParser():
     lexer.input(f1)
 
     success = True
-    expected = True
     tok = lexer.token()
     x = stack[-1]  # primer elemento de der a izq
 
@@ -170,21 +169,16 @@ def miParser():
                 print("\u001b[31mCadena terminada con errores")
             return  # aceptar
         else:
-            if x == tok.type and x != 'eof' and expected:
+            if x == tok.type and x != 'eof':
                 # print("entró aqui")
                 stack.pop()
                 x = stack[-1]
                 tok = lexer.token()
                 # print(tok)
 
-            if x in tokens and x != tok.type and expected:
+            if x in tokens and x != tok.type:
                 print("ERROR en línea: ", tok.lineno, " se esperaba ", symbols[x],
                       'en la posicion: ', tok.lexpos, "\n")
-                # print('tok value: ', tok.value)
-
-                # poner el token que se esperaba en la cadena
-                # estrategia modificar cadana y reiniciar parser (no recomendado)
-                # print(stack)
                 f1 = getSymbol[x] + f1[tok.lexpos:]
                 # print("\n", f1)
                 lexer.input(f1)
@@ -196,15 +190,17 @@ def miParser():
                 celda = buscar_en_tabla(x, tok.type)
                 if celda is None:
 
-                    print("\nERROR en línea: ", tok.lineno, ", NO SE ESPERABA token de tipo ", tok.type,
-                            "  se esperaba  ", x, "  en  '", tok.value, "'\n")
+                    print("ERROR en línea: ", tok.lineno, ", NO SE ESPERABA token de tipo ", tok.type,
+                            "\n")
 
-                    f1 = f1[tok.lexpos + len(tok.value):]
-                    f1 = f1[f1.find('\n'):]
-                    lexer.input(f1)
-                    tok = lexer.token()
-                    success = False
-                    expected = False
+                    print("\nERROR en línea: ", tok.lineno, ", NO SE ESPERABA token de tipo ", tok.type,
+                          "  se esperaba  ", x, "  en  '", tok.value, "'\n")
+                    return
+                    # f1 = f1[tok.lexpos + len(tok.value):]
+                    # f1 = f1[f1.find('\n'):]
+                    # lexer.input(f1)
+                    # tok = lexer.token()
+                    # success = False
                 else:
                     stack.pop()
                     agregar_pila(celda)
