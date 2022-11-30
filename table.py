@@ -1432,7 +1432,7 @@ tabla = [
     [S1, 'TIMES', None],
     [S1, 'DIVIDE', None],
     [S1, 'MOD', None],
-    [S1, 'struct', ['struct', 'ID', 'ID', 'finInstruccion']],
+    [S1, 'struct', ['struct', 'ID', 'ID', 'finInstruccion', S1]],
     [S1, 'return', ['return', F3, 'finInstruccion']],
     [S1, 'eof', None],
 

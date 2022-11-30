@@ -32,6 +32,7 @@ int main(){
 	    a = 23;
 	    b= 1;
 	}
+    struct algo algo;
 
 	algo.myNum = 1;
 	algo.myLetter = '';
