@@ -191,10 +191,10 @@ def miParser():
                 if celda is None:
 
                     print("ERROR en línea: ", tok.lineno, ", NO SE ESPERABA token de tipo ", tok.type,
-                            "\n")
+                          "\n")
 
-                    print("\nERROR en línea: ", tok.lineno, ", NO SE ESPERABA token de tipo ", tok.type,
-                          "  se esperaba  ", x, "  en  '", tok.value, "'\n")
+                    # print("\nERROR en línea: ", tok.lineno, ", NO SE ESPERABA token de tipo ", tok.type,
+                    #       "  se esperaba  ", x, "  en  '", tok.value, "'\n")
                     return
                     # f1 = f1[tok.lexpos + len(tok.value):]
                     # f1 = f1[f1.find('\n'):]
